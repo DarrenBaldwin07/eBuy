@@ -1,7 +1,8 @@
 <template>
   <div class='text-center mt-12' id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to='/login'>Login</router-link>
+    <router-link to='/login'>Login</router-link> |
+    <router-link to='/store'>Store</router-link>
   </div>
 
 </template>

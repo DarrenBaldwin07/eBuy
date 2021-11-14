@@ -10,7 +10,7 @@
       <div class='mt-4'>
         <h1 class='font-extrabold text-primary2 text-2xl'>Create your account </h1>
         <p class='text-gray-400'>If you already have an account, use the form bellow</p>
-        <form class='mt-4' @submit.prevent='login(email)'>
+        <form class='mt-4' @submit.prevent='login()'>
           <div>
             <p class='font-bold text-primary2'>Email</p>
             <input style="background-image: url('https://compai.pub/v1/png/09e209de0c58153bece88929e281e6f6fc627bd812b736c9d300459c190bb041')"  class='bg-no-repeat border-2 border-gray-300  pl-10 p-2 bg-left w-full rounded-lg focus:outline-none' :class="{'border-green-500': valTrue, 'border-red-500': valFalse}" type="text" v-model='email' @keyup="validate()">
@@ -20,12 +20,11 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>
 
-//import { supabase } from "../helpers/supabaseClient";
+import { supabase } from "../helpers/supabaseClient";
 import { valForm } from '../helpers/valForm'
 
 export default {
@@ -46,7 +45,7 @@ export default {
       if (this.email === '') {
         this.valTrue = false
         this.valFalse = false
-        return
+        return false
       }
       if (valForm(this.email)) {
         this.valFalse = false
@@ -59,7 +58,23 @@ export default {
       }
     },
 
-    
+    async login() {
+      if (this.validate()) {
+        try {
+          this.loading = true
+          const { error } = await supabase.auth.signIn({ email: this.email })
+          if (error) throw error
+          alert('Check your email for the login link')
+        } catch (error) {
+          alert(error.error_description || error.message)
+        } finally {
+          this.loading = false
+          this.email = ''
+          this.valFalse = false
+          this.valTrue = false
+        }
+      }
+    }
   }
 
 }
