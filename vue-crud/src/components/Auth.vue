@@ -24,7 +24,7 @@
 
 <script>
 
-import { supabase } from "../helpers/supabaseClient";
+import { supabase } from "../helpers/supabaseClient"
 import { valForm } from '../helpers/valForm'
 
 export default {
