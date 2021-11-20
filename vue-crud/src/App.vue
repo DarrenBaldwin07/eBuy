@@ -9,7 +9,15 @@ export default {
       handleStyles () {
         if (['/store'].includes(this.$route.path)) {
            document.body.className = 'bg-primary2'
-        } 
+        }
+
+        if (['/'].includes(this.$route.path)) {
+           document.body.className = 'bg-white'
+        }
+
+        if (['/login'].includes(this.$route.path)) {
+           document.body.className = 'bg-primary2'
+        }
       }
    },
     // Handle styles when the app is initially loaded
