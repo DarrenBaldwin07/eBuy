@@ -23,7 +23,7 @@
 </template>
 
 <script>
-
+// push to dev branch for testing and development - (use master for production)
 import { supabase } from "../helpers/supabaseClient"
 import { valForm } from '../helpers/valForm'
 
