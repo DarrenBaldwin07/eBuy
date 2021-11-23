@@ -1,6 +1,6 @@
 <template>
-  <div class='flex flex-row justify-center'>
-    <div class='hidden bg-gradient-to-b from-primary1 to-primary3  h-screen w-2/5 lg:flex flex-col'>
+  <div class='flex flex-row'>
+    <div class='hidden bg-gradient-to-b from-primary1 to-primary3 h-screen w-2/5 lg:flex flex-col'>
       <div class='p-2 w-24 rounded-lg m-2'>
         <img class='w-24' :src="logo2" alt="logo">
       </div>

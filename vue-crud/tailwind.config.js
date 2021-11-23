@@ -21,5 +21,28 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.container': {
+          maxWidth: '100%',
+          margin: 'auto',
+          paddingLeft: '5%',
+          paddingRight: '5%',
+          '@screen sm': {
+            maxWidth: '750px',
+          },
+          '@screen md': {
+            maxWidth: '900px',
+          },
+          '@screen lg': {
+            maxWidth: '1200px',
+          },
+          '@screen xl': {
+            maxWidth: '1500px',
+          },
+        }
+      })
+    },
+  ],
 };
