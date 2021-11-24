@@ -2,6 +2,7 @@
   "name": "vue-crud",
   "version": "0.1.0",
   "private": true,
+  "description": "Simple CRUD app built with Tailwind, Vue.js, and supabase",
   "scripts": {
     "serve": "TAILWIND_MODE=watch vue-cli-service serve",
     "build": "vue-cli-service build",
