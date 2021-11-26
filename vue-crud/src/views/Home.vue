@@ -24,15 +24,14 @@ export default {
 
   methods: {
     async getData() {
-      // get data from table with select
-      //const { data2 } = await supabase.from('cart').insert([{user_id: String(this.userID), item: 'Laptop Dell'}])
-      const { data } = await supabase.from('cart').select('item')
+      // set data
       this.userID = supabase.auth.user().id
+      await supabase.from('cart').insert([{user_id: String(this.userID), item: 'Laptop mac'}])
+      // get data from table with select
+      const { data } = await supabase.from('cart')
+      
       this.user = data
     }
   }
-  
-  
-  
 };
 </script>

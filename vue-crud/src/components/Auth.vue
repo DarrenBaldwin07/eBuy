@@ -1,6 +1,6 @@
 <template>
   <div class='flex flex-col items-center'>
-    <div v-if='loading' class='shadow-lg flex flex-row p-2 rounded-lg'>
+    <div v-if='loading' class='shadow-lg flex flex-row p-2 rounded-lg bg-white m-4'>
       <div class='circle1 w-4 h-4 m-1 bg-primary1 rounded-full animate-bounce'></div>
       <div class='circle2 w-4 h-4 m-1 bg-primary1 rounded-full animate-bounce'></div>
       <div class='circle3 w-4 h-4 m-1 bg-primary1 rounded-full animate-bounce'></div>
