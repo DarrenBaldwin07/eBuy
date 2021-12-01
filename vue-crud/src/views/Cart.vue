@@ -4,7 +4,7 @@
     <img class='m-2' :src="logo" alt="logo">
   </div>
   <div v-if='!loading' class='container'>
-    <div class='flex flex-col justify-center'>
+    <div class='flex flex-col m-4 justify-center'>
       <div class='flex flex-row items-center justify-between mt-6'>
         <div>
           <div class='bg-primary1 p-6 w-44 h-44 flex items-center justify-center rounded-full'><img :src="cart" alt="Shopping Cart"></div>
@@ -15,43 +15,70 @@
           <button><img :src="profile" alt="profile"></button>
         </div>
       </div>
-      <div class='flex flex-row justify-between'>
-        <div class='address rounded-xl p-2 shadow-xl'>
+      <div class='flex flex-row justify-between mt-4'>
+        <div class='address rounded-xl p-8 shadow-xl h-full'>
           <div class='flex flex-row'>
             <div class='flex flex-col m-4'>
-              <label for="name">First Name *</label>
-              <input class='border-2' type="text" name="name" id="name">
+              <label class='text-primary2' for="name">First Name *</label>
+              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="name" id="name">
             </div>
             <div class='flex flex-col m-4'>
-              <label for="name">Last Name *</label>
-              <input class='border-2' type="text" name="last-name" id="name">
+              <label class='text-primary2' for="name">Last Name *</label>
+              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
             </div>
           </div>
           <div class='flex flex-row'>
             <div class='flex flex-col m-4'>
-              <label for="name">Address *</label>
-              <input class='border-2' type="text" name="last-name" id="name">
+              <label class='text-primary2' for="name">Address *</label>
+              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="Address" id="address">
             </div>
             <div class='flex flex-col m-4'>
-              <label for="name">APT# *</label>
-              <input class='border-2' type="text" name="last-name" id="name">
+              <label class='text-primary2' for="name">APT# *</label>
+              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="APT" id="APT">
             </div>
           </div>
           <div class='flex flex-row'>
             <div class='flex flex-col m-4'>
-              <label for="name">City *</label>
-              <input class='border-2' type="text" name="last-name" id="name">
+              <label class='text-primary2' for="name">City *</label>
+              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="City" id="City">
             </div>
             <div class='flex flex-col m-4'>
-              <label for="name">APT# *</label>
-              <input class='border-2' type="text" name="last-name" id="name">
+              <label class='text-primary2' for="Country">Country *</label>
+              <select class='shadow-lg p-2 w-48 rounded-md' name="Country" id="country">
+                <option value="Country" disabled='disabled'>Country</option>
+                <option value="United States">United States</option>
+                <option value="United States">Russia</option>
+                <option value="United States">China</option>
+              </select>
             </div>
           </div>
-          
+          <div class='flex flex-col m-4'>
+              <label class='text-primary2' for="Country">Postal Code * </label>
+              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
+          </div>
+          <div class='m-4'>
+            <button class='bg-primary2 p-2.5 text-white rounded-md w-32'>Order Items</button>
+          </div>
         </div>
-        <div class='cart flex flex-col shadow-xl'>
-          <div v-for="i in data['data']" :key='i'>
-            <h1>{{ i['item'] }}</h1>
+        <div class='cart flex flex-col justify-between shadow-xl rounded-xl p-8'>
+          <div>
+            <h1 class='text-primary2 text-xl font-bold'>Your Order</h1>
+            <hr>
+          </div>
+          <div class='items h-72 overflow-hidden overflow-y-scroll'>
+              <div v-for="i in data['data']" :key='i'>
+                <div class='flex flex-row justify-between items-center bg-primary4 p-4 mt-2 rounded-lg w-72'>
+                  <div class='flex flex-row mt-2 p-2 overflow-hidden'>
+                    <img class='mr-2' src="" alt="Img">
+                    <h1>{{ i['item'] }}</h1>
+                  </div>
+                  <button>X</button>
+                </div>
+              </div>
+          </div>
+          <div class='flex flex-row justify-between'>
+            <p class='text-primary2 text-xl font-bold'>Total</p>
+            <p class='text-primary2 text-2xl font-bold'>$1999</p>
           </div>
         </div>
       </div>
@@ -98,11 +125,23 @@ export default {
         this.loading = false
       }, 1000)
     }
-    
+  },
+
+  methods: {
+    deleteItem() {
+      return 1
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
+  .items::-webkit-scrollbar {
+    display: none;
+  }
 
+  .items {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 </style>
