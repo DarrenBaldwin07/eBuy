@@ -1,7 +1,7 @@
 <template>
   <div class='container overflow-hidden'>
     <div class='nav flex flex-row justify-between items-center mt-4'>
-      <img class='w-36 ssm:w-24' :src="img" alt="Logo">
+      <router-link to='/'><img class='w-36 ssm:w-24' :src="img" alt="Logo"></router-link>
       <div class='hidden lg:flex'>
         <form @submit.prevent="" class='flex items-center'>
           <input class='border-2 border-gray-400 focus:outline-none focus:border-primary1 rounded-lg w-80 p-0.5' type="text" placeholder="">
