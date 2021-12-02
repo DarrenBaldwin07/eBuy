@@ -27,7 +27,7 @@ export default {
     async getData() {
       // set data
       this.userID = supabase.auth.user().id
-      await supabase.from('cart').insert([{user_id: String(this.userID), item: 'Laptop mac'}])
+      await supabase.from('cart').insert([{user_id: String(this.userID), item: 'Laptop mac', price: '$1999'}])
       // get data from table with select
       const { data } = await supabase.from('cart')
       

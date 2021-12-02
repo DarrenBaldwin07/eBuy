@@ -1,5 +1,5 @@
 <template>
-  <div v-if='loading' class='loading flex flex-col justify-center items-center w-screen h-screen bg-primary2'>
+  <div v-if='loading' class='loading flex flex-col justify-center items-center w-screen h-screen bg-primary2 overflow-hidden'>
     <div class='w-16 h-16 border-4 border-white border-t-4 border-t-primary1 bg-primary2 rounded-full animate-spin'></div>
     <img class='m-2' :src="logo" alt="logo">
   </div>
@@ -66,15 +66,22 @@
             <hr>
           </div>
           <div class='items h-72 overflow-hidden overflow-y-scroll'>
-              <div v-for="i in data['data']" :key='i'>
-                <div class='flex flex-row justify-between items-center bg-primary4 p-4 mt-2 rounded-lg w-72'>
-                  <div class='flex flex-row mt-2 p-2 overflow-hidden'>
+            <div v-if='empCart' class='flex flex-row items-center bg-primary1 p-4 rounded-lg'>
+              <img class='mr-2' :src="cart" alt="Shopping Cart">
+              <h1 class='text-white font-bold' >Your cart is empty.</h1>
+            </div>
+            <div v-for="(i, index) in data['data']" :key='i.id'>
+              <div class='flex flex-row justify-between items-center bg-primary4 p-4 mt-2 rounded-lg w-72'>
+                <div class='flex flex-row items-center mt-2 p-2 overflow-hidden'>
+                  <div class='mr-2'>
                     <img class='mr-2' src="" alt="Img">
-                    <h1>{{ i['item'] }}</h1>
+                    <p>{{ i['price'] }}</p>
                   </div>
-                  <button>X</button>
+                  <h1>{{ i['item'] }}</h1>
                 </div>
+                <button @click='deleteItem(index)'><img class='w-12' :src="delBtn" alt="delete button"></button>
               </div>
+            </div>
           </div>
           <div class='flex flex-row justify-between'>
             <p class='text-primary2 text-xl font-bold'>Total</p>
@@ -91,6 +98,7 @@ import cart from '../assets/images/cart2.svg'
 import { supabase } from '../helpers/supabaseClient'
 import profile from '../assets/images/Prof.svg'
 import logo from '../assets/images/Logo.png'
+import deleteBtn from '../assets/images/delete.svg'
 // IMPORT in a logo for loading screen (dont forget that u need a v-if for loader)
 export default {
 
@@ -102,11 +110,14 @@ export default {
   data() {
     return {
       cart: cart,
+      // data['data']
       data: '',
       userID: '',
       loading: false,
       profile: profile,
       logo: logo,
+      delBtn: deleteBtn,
+      empCart: false
     }
   },
 
@@ -118,6 +129,11 @@ export default {
 
       this.userID = await supabase.auth.user().id
       this.data = await supabase.from('cart')
+
+      if (this.data['data'].length === 0) {
+        this.empCart = true
+      }
+      console.log(this.data)
     } catch (error){
       console.log(error)
     } finally {
@@ -128,8 +144,19 @@ export default {
   },
 
   methods: {
-    deleteItem() {
-      return 1
+    async deleteItem(index) {
+      // deletes from actual DB
+      await supabase.from('cart').delete().match(this.data['data'][index])
+
+      // delete from frontend
+      this.data['data'].splice(index, 1)
+
+      // check if cart is empty
+      if (this.data['data'].length === 0) {
+        this.empCart = true
+      }
+
+
     }
   }
 }

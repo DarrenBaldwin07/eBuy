@@ -9,7 +9,7 @@
         </form>
       </div>
       <div class='flex flex-row items-center'>
-        <button><img class='w-20 ssm:w-12 mr-4' :src="cart" alt="cart"></button>
+        <router-link to='/cart'><img class='w-20 ssm:w-12 mr-4' :src="cart" alt="cart"></router-link>
         <a href="#"><img class='w-12 ssm:w-8' :src="profile" alt="profile"></a>
       </div>
     </div>
