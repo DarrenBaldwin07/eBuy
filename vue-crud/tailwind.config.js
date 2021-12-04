@@ -3,6 +3,7 @@ module.exports = {
   purge: ["./public/**/*.html", "./src/**/*.vue"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    // media queries 
     screens: {
       'lg': {'min': '1024px'},
       '2xl': {'min': '1535px'},
@@ -18,7 +19,7 @@ module.exports = {
       'ssm': {'max': '639px'},
     },
     
-    
+    // custom colors
     extend: {
       colors: {
         'primary1': '#FF7676',
@@ -35,6 +36,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    // for container
     function ({ addComponents }) {
       addComponents({
         '.container': {

@@ -15,7 +15,7 @@
             <p class='font-bold text-primary2'>Email</p>
             <input style="background-image: url('https://compai.pub/v1/png/09e209de0c58153bece88929e281e6f6fc627bd812b736c9d300459c190bb041')"  class='bg-no-repeat border-2 border-gray-300  pl-10 p-2 bg-left w-full rounded-lg focus:outline-none' :class="{'border-green-500': valTrue, 'border-red-500': valFalse}" onFocus="window.scrollTo(0, 0);" type="text" v-model='email' @keyup="validate()" placeholder="Johndoe@gmail.com">
           </div>
-          <button class='w-full p-2 bg-primary3 mt-2 rounded-lg text-white cursor-pointer'>Create Account</button>
+          <button class='w-full p-2 bg-primary3  mt-2 rounded-lg text-white cursor-pointer' :class="{'bg-opacity-40': cantSub}">Create Account</button>
         </form>
       </div>
     </div>
@@ -37,6 +37,7 @@ export default {
       email: '',
       valFalse: false,
       valTrue: false,
+      cantSub: true
     }
   },
 
@@ -45,15 +46,18 @@ export default {
       if (this.email === '') {
         this.valTrue = false
         this.valFalse = false
+        this.cantSub = true
         return false
       }
       if (valForm(this.email)) {
         this.valFalse = false
         this.valTrue = true
+        this.cantSub = false
         return true
       } else {
         this.valFalse = true
         this.valTrue = false
+        this.cantSub = true
         return false
       }
     },

@@ -28,12 +28,12 @@
         <p class='text-white m-4'>Cant find what ur looking for? Try searching using the field above.</p>
       </div>
       <div class='flex flex-row items-center justify-center flex-wrap mt-24'>
-        <item class='m-4' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='$1999.99'/>
-        <item class='m-4' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='$1999.99'/>
-        <item class='m-4' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='$1999.99'/>
-        <item class='m-4' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='$1999.99'/>
-        <item class='m-4' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='$1999.99'/>
-        <item class='m-4' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='$1999.99'/>
+        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='1999.99'/>
+        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='1999.99'/>
+        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='1999.99'/>
+        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='1999.99'/>
+        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='1999.99'/>
+        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='1999.99'/>
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@ export default {
   name: 'store',
 
   components: {
-    item
+    item,
   },
 
   data() {

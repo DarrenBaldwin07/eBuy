@@ -66,16 +66,18 @@
             <hr>
           </div>
           <div class='items h-72 overflow-hidden overflow-y-scroll'>
-            <div v-if='empCart' class='flex flex-row items-center bg-primary1 p-4 rounded-lg'>
-              <img class='mr-2' :src="cart" alt="Shopping Cart">
-              <h1 class='text-white font-bold' >Your cart is empty.</h1>
-            </div>
+            <template v-if='empCart'>
+              <div class='flex flex-row items-center bg-primary1 p-4 rounded-lg'>
+                <img class='mr-2' :src="cart" alt="Shopping Cart">
+                <h1 class='text-white font-bold' >Your cart is empty.</h1>
+              </div>
+            </template>
             <div v-for="(i, index) in data['data']" :key='i.id'>
               <div class='flex flex-row justify-between items-center bg-primary4 p-4 mt-2 rounded-lg w-72'>
                 <div class='flex flex-row items-center mt-2 p-2 overflow-hidden'>
                   <div class='mr-2'>
                     <img class='mr-2' src="" alt="Img">
-                    <p>{{ i['price'] }}</p>
+                    <p>${{ i['price'] }}</p>
                   </div>
                   <h1>{{ i['item'] }}</h1>
                 </div>
@@ -85,7 +87,7 @@
           </div>
           <div class='flex flex-row justify-between'>
             <p class='text-primary2 text-xl font-bold'>Total</p>
-            <p class='text-primary2 text-2xl font-bold'>$1999</p>
+            <p class='text-primary2 text-2xl font-bold'>${{ totalPrice }}</p>
           </div>
         </div>
       </div>
@@ -117,7 +119,8 @@ export default {
       profile: profile,
       logo: logo,
       delBtn: deleteBtn,
-      empCart: false
+      empCart: false,
+      totalPrice: 0,
     }
   },
 
@@ -133,6 +136,11 @@ export default {
       if (this.data['data'].length === 0) {
         this.empCart = true
       }
+
+      for (let i = 0; i < this.data['data'].length; i++) {
+        this.totalPrice += Number(this.data['data'][i]['price'])
+      }
+
       console.log(this.data)
     } catch (error){
       console.log(error)
@@ -148,6 +156,9 @@ export default {
       // deletes from actual DB
       await supabase.from('cart').delete().match(this.data['data'][index])
 
+      // update total price 
+      this.totalPrice -= Number(this.data['data'][index]['price'])
+
       // delete from frontend
       this.data['data'].splice(index, 1)
 
@@ -155,8 +166,6 @@ export default {
       if (this.data['data'].length === 0) {
         this.empCart = true
       }
-
-
     }
   }
 }
