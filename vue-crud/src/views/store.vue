@@ -17,7 +17,7 @@
 
     <div class='hidden slg:flex items-center justify-center ssm:w-full'>
       <form @submit.prevent="" class='flex items-center'>
-        <input class='border-2 border-gray-400 focus:outline-none focus:border-primary1 rounded-lg w-80 ssm:w-full p-0.5' type="text" placeholder="">
+        <input class='border-2 border-gray-400 focus:outline-none focus:border-primary1 rounded-lg w-80 ssm:w-full p-0.5' type="text">
         <button class='m-2 text-white bg-primary3 p-1 rounded-lg w-20 transition-colors hover:bg-primary1'>Search</button>
       </form>
     </div>

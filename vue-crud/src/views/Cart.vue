@@ -1,4 +1,5 @@
 <template>
+  <popup v-if='hasOrdered'/> 
   <div v-if='loading' class='loading flex flex-col justify-center items-center w-screen h-screen bg-primary2 overflow-hidden'>
     <div class='w-16 h-16 border-4 border-white border-t-4 border-t-primary1 bg-primary2 rounded-full animate-spin'></div>
     <img class='m-2' :src="logo" alt="logo">
@@ -7,7 +8,8 @@
     <div class='flex flex-col m-4 justify-center'>
       <div class='flex flex-row items-center justify-between mt-6'>
         <div>
-          <div class='bg-primary1 p-6 w-44 h-44 flex items-center justify-center rounded-full'><img :src="cart" alt="Shopping Cart"></div>
+          <router-link class='bg-primary3 text-white mb-4 px-2 py-2 rounded-md' to='/store'>Back</router-link>
+          <div class='bg-primary1 p-6 w-44 h-44 flex items-center justify-center rounded-full mt-4'><img :src="cart" alt="Shopping Cart"></div>
           <h1 class='text-3xl text-primary2 font-extrabold m-4'>Shopping Cart</h1>
         </div>
         <div class='flex flex-row items-center'>
@@ -75,9 +77,9 @@
             <div v-for="(i, index) in data['data']" :key='i.id'>
               <div class='flex flex-row justify-between items-center bg-primary4 p-4 mt-2 rounded-lg w-72'>
                 <div class='flex flex-row items-center mt-2 p-2 overflow-hidden'>
-                  <div class='mr-2'>
-                    <img class='mr-2' src="" alt="Img">
-                    <p>${{ i['price'] }}</p>
+                  <div class=''>
+                    <img class='mb-2 w-14 rounded-md' :src="i['image']" alt="Image">
+                    <p class='text-primary3 font-bold'>${{ i['price'] }}</p>
                   </div>
                   <h1>{{ i['item'] }}</h1>
                 </div>
@@ -101,6 +103,7 @@ import { supabase } from '../helpers/supabaseClient'
 import profile from '../assets/images/Prof.svg'
 import logo from '../assets/images/Logo.png'
 import deleteBtn from '../assets/images/delete.svg'
+import popup from '../components/notif.vue'
 // IMPORT in a logo for loading screen (dont forget that u need a v-if for loader)
 export default {
 
@@ -108,6 +111,9 @@ export default {
     // build out id system to pull images from local files
   name: 'Cart',
 
+  components: {
+    popup,
+  },
 
   data() {
     return {
@@ -121,8 +127,10 @@ export default {
       delBtn: deleteBtn,
       empCart: false,
       totalPrice: 0,
+      hasOrdered: false
     }
   },
+
 
   async mounted() {
     // add loading animation

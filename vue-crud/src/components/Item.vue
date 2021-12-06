@@ -41,11 +41,13 @@ export default {
 
     methods: {
         async addCart() {
-            this.userID = supabase.auth.user().id
-            await supabase.from('cart').insert([{user_id: String(this.userID), item: `${this.title}`, price: this.price}])
-            const { data } = await supabase.from('cart')
-            console.log(data)
-
+            if (this.stock) {
+                this.userID = supabase.auth.user().id
+                await supabase.from('cart').insert([{user_id: String(this.userID), item: `${this.title}`, price: this.price, image: this.imgSrc}])
+                const { data } = await supabase.from('cart')
+                console.log(data)
+            }
+            
             if (this.stock) {
                 this.show = true
                 this.cartText = 'Added to Cart'
