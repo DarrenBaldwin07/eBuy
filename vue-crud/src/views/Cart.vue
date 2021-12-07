@@ -8,7 +8,7 @@
     <div class='flex flex-col m-4 justify-center'>
       <div class='flex flex-row items-center justify-between mt-6'>
         <div>
-          <router-link class='bg-primary3 text-white mb-4 px-2 py-2 rounded-md' to='/store'>Back</router-link>
+          <router-link class='back bg-primary3 text-white mb-4 px-2 py-2 rounded-md' to='/store'>Back</router-link>
           <div class='bg-primary1 p-6 w-44 h-44 flex items-center justify-center rounded-full mt-4'><img :src="cart" alt="Shopping Cart"></div>
           <h1 class='text-3xl text-primary2 font-extrabold m-4'>Shopping Cart</h1>
         </div>
@@ -19,48 +19,50 @@
       </div>
       <div class='flex flex-row justify-between mt-4'>
         <div class='address rounded-xl p-8 shadow-xl h-full'>
-          <div class='flex flex-row'>
-            <div class='flex flex-col m-4'>
-              <label class='text-primary2' for="name">First Name *</label>
-              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="name" id="name">
+          <form @keyup="isFormFilled()" @submit.prevent='makeOrder()'>
+            <div class='flex flex-row'>
+              <div class='flex flex-col m-4'>
+                <label class='text-primary2' for="name">First Name *</label>
+                <input v-model='firstName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="name" id="name">
+              </div>
+              <div class='flex flex-col m-4'>
+                <label class='text-primary2' for="name">Last Name *</label>
+                <input v-model='lastName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
+              </div>
+            </div>
+            <div class='flex flex-row'>
+              <div class='flex flex-col m-4'>
+                <label class='text-primary2' for="name">Address *</label>
+                <input v-model='address' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="Address" id="address">
+              </div>
+              <div class='flex flex-col m-4'>
+                <label class='text-primary2' for="name">APT# *</label>
+                <input v-model='apt' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="APT" id="APT">
+              </div>
+            </div>
+            <div class='flex flex-row'>
+              <div class='flex flex-col m-4'>
+                <label class='text-primary2' for="name">City *</label>
+                <input v-model='city' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="City" id="City">
+              </div>
+              <div class='flex flex-col m-4'>
+                <label class='text-primary2' for="Country">Country *</label>
+                <select class='shadow-lg p-2 w-48 rounded-md' name="Country" id="country">
+                  <option value="Country" disabled='disabled'>Country</option>
+                  <option value="United States">United States</option>
+                  <option value="United States">Russia</option>
+                  <option value="United States">China</option>
+                </select>
+              </div>
             </div>
             <div class='flex flex-col m-4'>
-              <label class='text-primary2' for="name">Last Name *</label>
-              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
+                <label class='text-primary2' for="Country">Postal Code * </label>
+                <input v-model='postalCode' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
             </div>
-          </div>
-          <div class='flex flex-row'>
-            <div class='flex flex-col m-4'>
-              <label class='text-primary2' for="name">Address *</label>
-              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="Address" id="address">
+            <div class='m-4'>
+              <button class='bg-primary2 bg-opacity-50 p-2.5 text-red text-white rounded-md w-32' :class="{'bg-opacity-100': isFilled}">Order Items</button>
             </div>
-            <div class='flex flex-col m-4'>
-              <label class='text-primary2' for="name">APT# *</label>
-              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="APT" id="APT">
-            </div>
-          </div>
-          <div class='flex flex-row'>
-            <div class='flex flex-col m-4'>
-              <label class='text-primary2' for="name">City *</label>
-              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="City" id="City">
-            </div>
-            <div class='flex flex-col m-4'>
-              <label class='text-primary2' for="Country">Country *</label>
-              <select class='shadow-lg p-2 w-48 rounded-md' name="Country" id="country">
-                <option value="Country" disabled='disabled'>Country</option>
-                <option value="United States">United States</option>
-                <option value="United States">Russia</option>
-                <option value="United States">China</option>
-              </select>
-            </div>
-          </div>
-          <div class='flex flex-col m-4'>
-              <label class='text-primary2' for="Country">Postal Code * </label>
-              <input class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
-          </div>
-          <div class='m-4'>
-            <button class='bg-primary2 p-2.5 text-white rounded-md w-32'>Order Items</button>
-          </div>
+          </form>
         </div>
         <div class='cart flex flex-col justify-between shadow-xl rounded-xl p-8'>
           <div>
@@ -104,6 +106,7 @@ import profile from '../assets/images/Prof.svg'
 import logo from '../assets/images/Logo.png'
 import deleteBtn from '../assets/images/delete.svg'
 import popup from '../components/notif.vue'
+import backBtn from '../assets/images/backBtn.svg'
 // IMPORT in a logo for loading screen (dont forget that u need a v-if for loader)
 export default {
 
@@ -127,7 +130,15 @@ export default {
       delBtn: deleteBtn,
       empCart: false,
       totalPrice: 0,
-      hasOrdered: false
+      hasOrdered: false,
+      backBtn: backBtn,
+      firstName: '',
+      lastName: '',
+      address: '',
+      apt: '',
+      city: '',
+      postalCode: '',
+      isFilled: false,
     }
   },
 
@@ -166,6 +177,7 @@ export default {
 
       // update total price 
       this.totalPrice -= Number(this.data['data'][index]['price'])
+      this.totalPrice = Math.floor(this.totalPrice)
 
       // delete from frontend
       this.data['data'].splice(index, 1)
@@ -173,6 +185,40 @@ export default {
       // check if cart is empty
       if (this.data['data'].length === 0) {
         this.empCart = true
+        this.totalPrice = 0
+      }
+    },
+
+    disScroll() {
+      window.scrollTo(0, 0)
+    },
+
+    makeOrder() {
+
+      if (this.data['data'].length != 0) {
+        if (this.isFormFilled()) {
+          this.hasOrdered = true
+          window.scrollTo(0, 0)
+          // disable scroll
+          window.addEventListener('scroll', this.disScroll)
+
+          setTimeout(() => {
+            // remove popup
+            this.hasOrdered = false
+            // re-enable scrolling
+            window.removeEventListener('scroll', this.disScroll)
+
+            // redirect user to store page
+            this.$router.push('store')
+          }, 1500)
+        }
+      }
+    },
+
+    isFormFilled() {
+      if (this.firstName != '' && this.lastName != '' && this.address != '' && this.apt != '' && this.postalCode != '' && this.city != '') {
+        this.isFilled = true
+        return true
       }
     }
   }
@@ -180,6 +226,11 @@ export default {
 </script>
 
 <style scoped>
+
+  .back {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
   .items::-webkit-scrollbar {
     display: none;
   }
