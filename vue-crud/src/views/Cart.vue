@@ -60,7 +60,7 @@
                 <input v-model='postalCode' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
             </div>
             <div class='m-4'>
-              <button class='bg-primary2 bg-opacity-50 p-2.5 text-red text-white rounded-md w-32' :class="{'bg-opacity-100': isFilled}">Order Items</button>
+              <button class='bg-primary2 bg-opacity-40 p-2.5 text-red text-white rounded-md w-32' :class="{'bg-opacity-100': isFilled}">Order Items</button>
             </div>
           </form>
         </div>
@@ -148,7 +148,7 @@ export default {
     try {
       // still need to work on loading animations
       this.loading = true
-
+      window.removeEventListener('scroll', this.disScroll)
       this.userID = await supabase.auth.user().id
       this.data = await supabase.from('cart')
 
@@ -168,6 +168,10 @@ export default {
         this.loading = false
       }, 1000)
     }
+  },
+
+  unmounted() {
+     window.removeEventListener('scroll', this.disScroll)
   },
 
   methods: {
@@ -201,16 +205,6 @@ export default {
           window.scrollTo(0, 0)
           // disable scroll
           window.addEventListener('scroll', this.disScroll)
-
-          setTimeout(() => {
-            // remove popup
-            this.hasOrdered = false
-            // re-enable scrolling
-            window.removeEventListener('scroll', this.disScroll)
-
-            // redirect user to store page
-            this.$router.push('store')
-          }, 1500)
         }
       }
     },
@@ -220,6 +214,8 @@ export default {
         this.isFilled = true
         return true
       }
+
+      return false
     }
   }
 }
