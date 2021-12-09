@@ -8,7 +8,7 @@
           <button class='m-2 text-white bg-primary3 p-1 rounded-lg w-20 transition-colors hover:bg-primary1'>Search</button>
         </form>
       </div>
-      <div class='flex flex-row items-center' :class="{'fixed shadow-lg bg-primary2 z-10 p-4 rounded-3xl justify-center bg-opacity-70': active}">
+      <div class='flex flex-row items-center' :class="{'fixed shadow-lg bg-primary2 z-10 p-4 rounded-3xl justify-center bg-opacity-70 mt-4': active}">
         <router-link to='/cart'><img class='w-20 ssm:w-14 mr-4' :src="cart" alt="cart"></router-link>
         <a href="#"><img class='w-12 ssm:w-10' :src="profile" alt="profile"></a>
       </div>

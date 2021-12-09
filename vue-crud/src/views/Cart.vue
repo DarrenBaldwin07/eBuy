@@ -4,86 +4,88 @@
     <div class='w-16 h-16 border-4 border-white border-t-4 border-t-primary1 bg-primary2 rounded-full animate-spin'></div>
     <img class='m-2' :src="logo" alt="logo">
   </div>
-  <div v-if='!loading' class='container'>
+  <div v-if='!loading' class='container overflow-hidden'>
     <div class='flex flex-col m-4 justify-center'>
-      <div class='flex flex-row items-center justify-between mt-6'>
-        <div>
+      <div>
+        <div class='flex flex-row justify-between items-center'>
           <router-link class='back bg-primary3 text-white mb-4 px-2 py-2 rounded-md' to='/store'>Back</router-link>
-          <div class='bg-primary1 p-6 w-44 h-44 flex items-center justify-center rounded-full mt-4'><img :src="cart" alt="Shopping Cart"></div>
-          <h1 class='text-3xl text-primary2 font-extrabold m-4'>Shopping Cart</h1>
+          <div class='flex flex-row items-center'>
+            <p class='mr-4 ssm:m-2 text-xs'>Darren</p>
+            <button><img class='w-12' :src="profile" alt="profile"></button>
+          </div>
         </div>
-        <div class='flex flex-row items-center'>
-          <p class='mr-4'>Darren Baldwin</p>
-          <button><img :src="profile" alt="profile"></button>
-        </div>
+          <div class='bg-primary1 p-6 w-44 h-44 flex items-center justify-center rounded-full mt-6 smd:w-28 smd:h-28'><img class='smd:w-12 xs:w-10' :src="cart" alt="Shopping Cart"></div>
+          <h1 class='text-3xl text-primary2 font-extrabold smd:text-xl ssm:w-36 mt-4'>Shopping Cart</h1>
       </div>
-      <div class='flex flex-row justify-between mt-4'>
+      <div class='flex flex-row slg:flex-col justify-between mt-4'>
         <div class='address rounded-xl p-8 shadow-xl h-full'>
-          <form @keyup="isFormFilled()" @submit.prevent='makeOrder()'>
-            <div class='flex flex-row'>
-              <div class='flex flex-col m-4'>
-                <label class='text-primary2' for="name">First Name *</label>
-                <input v-model='firstName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="name" id="name">
+          <form class='' @keyup="isFormFilled()" @submit.prevent='makeOrder()'>
+            <div class='slg:flex flex-col items-center'>
+              <div class='flex flex-row xs:flex-col'> 
+                <div class='flex flex-col m-4'>
+                  <label class='text-primary2' for="name">First Name *</label>
+                  <input v-model='firstName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="name" id="name">
+                </div>
+                <div class='flex flex-col m-4'>
+                  <label class='text-primary2' for="name">Last Name *</label>
+                  <input v-model='lastName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="last-name" id="name">
+                </div>
+              </div>
+              <div class='flex flex-row xs:flex-col'>
+                <div class='flex flex-col m-4'>
+                  <label class='text-primary2' for="name">Address *</label>
+                  <input v-model='address' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="Address" id="address">
+                </div>
+                <div class='flex flex-col m-4'>
+                  <label class='text-primary2' for="name">APT# *</label>
+                  <input v-model='apt' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="APT" id="APT">
+                </div>
+              </div>
+              <div class='flex flex-row xs:flex-col'>
+                <div class='flex flex-col m-4'>
+                  <label class='text-primary2' for="name">City *</label>
+                  <input v-model='city' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="City" id="City">
+                </div>
+                <div class='flex flex-col m-4'>
+                  <label class='text-primary2' for="Country">Country *</label>
+                  <select class='shadow-lg p-2 w-48 rounded-md xs:w-60' name="Country" id="country">
+                    <option value="Country" disabled='disabled'>Country</option>
+                    <option value="United States">United States</option>
+                    <option value="United States">Russia</option>
+                    <option value="United States">China</option>
+                  </select>
+                </div>
               </div>
               <div class='flex flex-col m-4'>
-                <label class='text-primary2' for="name">Last Name *</label>
-                <input v-model='lastName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
+                  <label class='text-primary2' for="Country">Postal Code * </label>
+                  <input v-model='postalCode' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 smd:w-60' type="text" name="last-name" id="name">
               </div>
-            </div>
-            <div class='flex flex-row'>
-              <div class='flex flex-col m-4'>
-                <label class='text-primary2' for="name">Address *</label>
-                <input v-model='address' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="Address" id="address">
+              <div class='m-4'>
+                <button class='bg-primary2 bg-opacity-40 p-2.5 text-red text-white rounded-md smd:w-60' :class="{'bg-opacity-100': isFilled}">Order Items</button>
               </div>
-              <div class='flex flex-col m-4'>
-                <label class='text-primary2' for="name">APT# *</label>
-                <input v-model='apt' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="APT" id="APT">
-              </div>
-            </div>
-            <div class='flex flex-row'>
-              <div class='flex flex-col m-4'>
-                <label class='text-primary2' for="name">City *</label>
-                <input v-model='city' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="City" id="City">
-              </div>
-              <div class='flex flex-col m-4'>
-                <label class='text-primary2' for="Country">Country *</label>
-                <select class='shadow-lg p-2 w-48 rounded-md' name="Country" id="country">
-                  <option value="Country" disabled='disabled'>Country</option>
-                  <option value="United States">United States</option>
-                  <option value="United States">Russia</option>
-                  <option value="United States">China</option>
-                </select>
-              </div>
-            </div>
-            <div class='flex flex-col m-4'>
-                <label class='text-primary2' for="Country">Postal Code * </label>
-                <input v-model='postalCode' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2' type="text" name="last-name" id="name">
-            </div>
-            <div class='m-4'>
-              <button class='bg-primary2 bg-opacity-40 p-2.5 text-red text-white rounded-md w-32' :class="{'bg-opacity-100': isFilled}">Order Items</button>
             </div>
           </form>
         </div>
-        <div class='cart flex flex-col justify-between shadow-xl rounded-xl p-8'>
+        <div class='cart flex flex-col justify-between shadow-xl rounded-xl p-8 slg:mt-8'>
           <div>
             <h1 class='text-primary2 text-xl font-bold'>Your Order</h1>
             <hr>
           </div>
           <div class='items h-72 overflow-hidden overflow-y-scroll'>
             <template v-if='empCart'>
-              <div class='flex flex-row items-center bg-primary1 p-4 rounded-lg'>
+              <div class='flex flex-row items-center bg-primary1 p-4 rounded-lg mt-2'>
                 <img class='mr-2' :src="cart" alt="Shopping Cart">
                 <h1 class='text-white font-bold' >Your cart is empty.</h1>
               </div>
             </template>
             <div v-for="(i, index) in data['data']" :key='i.id'>
-              <div class='flex flex-row justify-between items-center bg-primary4 p-4 mt-2 rounded-lg w-72'>
+              <div class='flex flex-row justify-between items-center bg-primary4 p-4 mt-2 rounded-lg w-full'>
                 <div class='flex flex-row items-center mt-2 p-2 overflow-hidden'>
-                  <div class=''>
-                    <img class='mb-2 w-14 rounded-md' :src="i['image']" alt="Image">
-                    <p class='text-primary3 font-bold'>${{ i['price'] }}</p>
+                  <div>
+                    <img class='mb-2 w-14 rounded-md xs:w-12' :src="i['image']" alt="Image">
+                    <p class='text-primary3 font-bold xs:text-xs'>${{ i['price'] }}</p>
                   </div>
-                  <h1>{{ i['item'] }}</h1>
+                  <h1 class='ssm:text-xs'>{{ i['item'] }}</h1>
                 </div>
                 <button @click='deleteItem(index)'><img class='w-12' :src="delBtn" alt="delete button"></button>
               </div>
@@ -215,6 +217,7 @@ export default {
         return true
       }
 
+      this.isFilled = false
       return false
     }
   }
