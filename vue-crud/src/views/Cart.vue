@@ -207,14 +207,17 @@ export default {
           window.scrollTo(0, 0)
           // disable scroll
           window.addEventListener('scroll', this.disScroll)
+          
         }
       }
     },
 
     isFormFilled() {
       if (this.firstName != '' && this.lastName != '' && this.address != '' && this.apt != '' && this.postalCode != '' && this.city != '') {
-        this.isFilled = true
-        return true
+        if (this.data['data'].length != 0) {
+          this.isFilled = true
+          return true
+        }
       }
 
       this.isFilled = false

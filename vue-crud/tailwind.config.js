@@ -3,6 +3,12 @@ module.exports = {
   purge: ["./public/**/*.html", "./src/**/*.vue"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+
+    minWidth: {
+      '800': '800px',
+      '500': '500px',
+    },
+
     // media queries 
     screens: {
       '2xl': {'min': '1535px'},
@@ -27,7 +33,6 @@ module.exports = {
         'primary3': '#EA5858',
         'primary4': '#E5E5E5',
         'primary5': '#FF7D7D'
-        
       },
     },
     
