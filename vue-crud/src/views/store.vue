@@ -1,23 +1,23 @@
 <template>
   <template v-if='searched'>
-    <div class='search-view z-30 bg-white min-w-800 slg:min-w-500 shadow-lg p-8 rounded-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 fixed overflow-hidden'>
+    <div class='search-view z-30 bg-white w-800 slg:w-500 shadow-lg smd:w-300 p-8 rounded-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 fixed overflow-hidden' :class="{'h-72': isSearchFound}">
       <div class='results'>
         <div class='flex flex-row items-center justify-between'>
-          <div class='flex flex-row mb-2'>
-            <h1 class='text-primary2 font-extrabold text-3xl slg:text-xl mb-2'>Search Results</h1>
+          <div class='flex flex-row mb-2 items-center'>
+            <h1 class='text-primary2 font-extrabold text-3xl slg:text-xl mb-2 smd:text-lg'>Search Results</h1>
             <img class='ml-4' :src="images.searchIcon" alt="search icon">
           </div>
           <button @click='removeSearchView()' class='hover:bg-gray-100 p-2 rounded-full transition-all'><img class='w-6' :src="images.closeButton" alt="close button"></button>
         </div>
         <hr>
       </div>
-      <div class='flex flex-row justify-center'>
-        <div class='flex flex-row overflow-hidden slg:flex-col slg:items-center slg:justify-center slg:h-96' v-for="i in searchResults"  :key='i'>
-          <item class='m-4' :title="i['title']" :price="i['price']" :stock="i['stock']" :imgSrc="i['img']"/>
+      <div v-if='!isSearchFound' class='items flex flex-row slg:flex-col items-center overflow-hidden slg:h-96 slg:overflow-scroll'>
+        <div v-for="i in searchResults"  :key='i'>
+          <item class='m-4 slg:m-0 slg:mt-2 slg:mb-4' :title="i['title']" :price="i['price']" :stock="i['stock']" :imgSrc="i['img']"/>
         </div>
       </div>
       <template v-if='isSearchFound'>
-        <div class='flex flex-col items-center justify-center mx-auto w-56 mt-12'>
+        <div class='flex flex-col items-center justify-center mx-auto w-56 mt-12 smd:mt-4'>
           <div class='bg-primary1 text-white w-12 h-12 flex items-center justify-center rounded-full font-extrabold text-2xl'>!</div>
           <p class='text-center text-primary2 mt-2'>Sorry, we could not find what you are looking for.</p>
         </div>
@@ -178,7 +178,12 @@ export default {
     scroll-behavior: smooth;
   }
 
-  .search-view { 
+  .items::-webkit-scrollbar {
+    display: none;
+  }
 
+  .items {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 </style>

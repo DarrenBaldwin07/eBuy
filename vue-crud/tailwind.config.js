@@ -7,6 +7,7 @@ module.exports = {
     minWidth: {
       '800': '800px',
       '500': '500px',
+      '300': '300px',
     },
 
     // media queries 
@@ -27,6 +28,12 @@ module.exports = {
     
     // custom colors
     extend: {
+      width: {
+        '800': '800px',
+        '500': '500px',
+        '300': '300px',
+      },
+
       colors: {
         'primary1': '#FF7676',
         'primary2': '#454545',

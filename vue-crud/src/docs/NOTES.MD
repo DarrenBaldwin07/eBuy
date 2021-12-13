@@ -6,7 +6,8 @@
             [*] - add products (price, image, title) to db - then store page can make a request to db and for each product we can display a product/item component - almost done (look at top of store view) - addblur when search view comes up - also add closeWindow func when click on X
             [] - Finish search view
                 [*] - functionality - search for items that include whatever is in search bar
-                [] - UI - make the popup view responsive
+                [*] - UI - make the popup view responsive
+                    [] - May need to check this when u add support for more products in db
         [*] - Add blanked out login button if not entered valid email 
         [*] - build out cart page
             [*] - Add image id system to cart comp

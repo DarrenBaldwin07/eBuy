@@ -199,7 +199,7 @@ export default {
       window.scrollTo(0, 0)
     },
 
-    makeOrder() {
+    async makeOrder() {
 
       if (this.data['data'].length != 0) {
         if (this.isFormFilled()) {
@@ -207,6 +207,15 @@ export default {
           window.scrollTo(0, 0)
           // disable scroll
           window.addEventListener('scroll', this.disScroll)
+
+          // clear Cart - using try just so we can catch any errors
+          try {
+            // delete everything from cart
+            await supabase.from('cart').delete()
+
+          } catch (error) {
+            console.log('Error: ',error)
+          }
           
         }
       }
