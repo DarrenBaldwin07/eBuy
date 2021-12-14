@@ -1,5 +1,5 @@
 <template>
-    <div class='w-72 smd:w-56'>
+    <div class='w-72'>
         <div class='storeItem flex flex-col items-center justify-center bg-white p-4 shadow-lg rounded-xl w-full'>
             <div>
                 <div>

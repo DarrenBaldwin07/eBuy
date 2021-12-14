@@ -13,7 +13,7 @@
       </div>
       <div v-if='!isSearchFound' class='items flex flex-row slg:flex-col items-center overflow-hidden slg:h-96 slg:overflow-scroll'>
         <div v-for="i in searchResults"  :key='i'>
-          <item class='m-4 slg:m-0 slg:mt-2 slg:mb-4' :title="i['title']" :price="i['price']" :stock="i['stock']" :imgSrc="i['img']"/>
+          <item class='m-4 slg:m-0 slg:mt-2 slg:mb-4 smd:w-56' :title="i['title']" :price="i['price']" :stock="i['stock']" :imgSrc="i['img']"/>
         </div>
       </div>
       <template v-if='isSearchFound'>
@@ -36,7 +36,7 @@
       </div>
       <div class='flex flex-row items-center' :class="{'fixed shadow-lg bg-primary2 z-10 p-4 rounded-3xl justify-center bg-opacity-70 mt-4': active}">
         <router-link to='/cart'><img class='w-20 ssm:w-14 mr-4' :src="cart" alt="cart"></router-link>
-        <router-link to='#'><img class='w-12 ssm:w-10' :src="profile" alt="profile"></router-link>
+        <router-link to='/profile'><img class='w-12 ssm:w-10' :src="profile" alt="profile"></router-link>
       </div>
     </div>
     <div class='hidden slg:flex items-center justify-center ssm:w-full'>

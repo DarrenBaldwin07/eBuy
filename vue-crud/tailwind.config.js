@@ -26,7 +26,7 @@ module.exports = {
       'xxs': {'max': '480px'},
     },
     
-    // custom colors
+    // custom colors - put in extend to extend current props instead of overriding everything
     extend: {
       width: {
         '800': '800px',

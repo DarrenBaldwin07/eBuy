@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to='/login'>Login</router-link> |
     <router-link to='/store'>Store</router-link> |
-    <router-link to='/cart'>Cart</router-link>
+    <router-link to='/cart'>Cart</router-link> |
+    <router-link to='/profile'>Profile</router-link>
   </div>
   <h1>{{ userInfo }}</h1>
   <h1>{{ user }}</h1>

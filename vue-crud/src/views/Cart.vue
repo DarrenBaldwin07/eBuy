@@ -74,7 +74,7 @@
           <div class='items h-72 overflow-hidden overflow-y-scroll'>
             <template v-if='empCart'>
               <div class='flex flex-row items-center bg-primary1 p-4 rounded-lg mt-2'>
-                <img class='mr-2' :src="cart" alt="Shopping Cart">
+                <img class='mr-2 xs:w-12' :src="cart" alt="Shopping Cart">
                 <h1 class='text-white font-bold' >Your cart is empty.</h1>
               </div>
             </template>
@@ -125,6 +125,7 @@ export default {
       cart: cart,
       // data['data']
       data: '',
+      orderCount: '',
       userID: '',
       loading: false,
       profile: profile,
@@ -163,7 +164,7 @@ export default {
       }
 
       console.log(this.data)
-    } catch (error){
+    } catch (error) {
       console.log(error)
     } finally {
       setTimeout(() => {
@@ -208,10 +209,12 @@ export default {
           // disable scroll
           window.addEventListener('scroll', this.disScroll)
 
-          // clear Cart - using try just so we can catch any errors
+          // clear Cart - increment order count 
           try {
             // delete everything from cart
             await supabase.from('cart').delete()
+            this.orderCount = await supabase.from('profiles')
+            console.log(this.orderCount)
 
           } catch (error) {
             console.log('Error: ',error)

@@ -31,6 +31,10 @@ export default {
         if (['/cart'].includes(this.$route.path)) {
            document.body.className = 'bg-white'
         }
+
+        if (['/profile'].includes(this.$route.path)) {
+           document.body.className = 'bg-white'
+        }
       }
    },
     // Handle styles when the app is initially loaded
