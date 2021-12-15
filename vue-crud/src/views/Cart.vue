@@ -123,7 +123,6 @@ export default {
   data() {
     return {
       cart: cart,
-      // data['data']
       data: '',
       orderCount: '',
       userID: '',
@@ -214,10 +213,19 @@ export default {
             // delete everything from cart
             await supabase.from('cart').delete()
             this.orderCount = await supabase.from('profiles')
-            console.log(this.orderCount)
+            this.userID = await supabase.auth.user().id
+            
+            if (this.orderCount['data'].length < 1) {
+              await supabase.from('profiles').insert([{user_id: this.userID, order_count: 1}])
+            } else {
+              await supabase.from('profiles').insert([{user_id: this.userID, order_count: this.orderCount['data'][this.orderCount['data'].length - 1]['order_count'] + 1}])
+            }
 
+            
           } catch (error) {
-            console.log('Error: ',error)
+            console.log('Error: ', error)
+          } finally {
+            console.log(this.orderCount)
           }
           
         }

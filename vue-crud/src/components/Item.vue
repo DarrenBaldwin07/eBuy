@@ -41,7 +41,6 @@ export default {
 
     methods: {
         async addCart() {
-            // for 
             if (this.stock) {
                 this.userID = supabase.auth.user().id
                 await supabase.from('cart').insert([{user_id: String(this.userID), item: `${this.title}`, price: this.price, image: this.imgSrc}])

@@ -16,8 +16,11 @@
             [*] - Make cart page responsive
             [*] - Add ability to order items and display confirmation screen - Make this better
             [*] - Add blanked out order button if fields not filled in
-            [] - Clear cart page on order
+            [*] - Clear cart page on order
         [] - build out profile page
+            [*] - Get sign-out button working
+            [] - add order count - implement order count inside of cart page when the user makes an order
+            [] - Add email to cart page and profile page link
         [] - Build out landing page
         [] - will need to refactor and delete comments at some point
 
