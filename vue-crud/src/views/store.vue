@@ -11,10 +11,12 @@
         </div>
         <hr>
       </div>
-      <div v-if='!isSearchFound' class='items flex flex-row slg:flex-col items-center overflow-hidden slg:h-96 slg:overflow-scroll'>
+      <div ref='productSlider' v-if='!isSearchFound' class='items flex flex-row slg:flex-col items-center slg:h-96 overflow-x-auto'>
+        <div @click='goLeft()' class='bg-primary2 opacity-70 w-12 h-12 flex items-center justify-center z-10 absolute rounded-full cursor-pointer inset-y-auto left-6 slg:hidden'><img class='w-4' :src="images.arrowLeft" alt="Left Arrow"></div>
         <div v-for="i in searchResults"  :key='i'>
           <item class='m-4 slg:m-0 slg:mt-2 slg:mb-4 smd:w-56' :title="i['title']" :price="i['price']" :stock="i['stock']" :imgSrc="i['img']"/>
         </div>
+        <div @click='goRight()' class='bg-primary2 opacity-70 w-12 h-12 flex items-center justify-center z-10 absolute rounded-full cursor-pointer inset-y-auto right-6 slg:hidden'><img class='w-4'  :src="images.arrowRight" alt="Right Arrow"></div>
       </div>
       <template v-if='isSearchFound'>
         <div class='flex flex-col items-center justify-center mx-auto w-56 mt-12 smd:mt-4'>
@@ -51,16 +53,8 @@
         <h1 class='text-primary1 font-extrabold text-6xl'>View our top products Bellow!</h1>
         <p class='text-white m-4'>Cant find what ur looking for? Try searching using the field above.</p>
       </div>
-      <div class='flex flex-row items-center justify-center flex-wrap mt-24'>
+      <div class='flex flex-row items-center justify-center flex-wrap mt-24 mb-4'>
         <item class='m-2' :imgSrc='images.MBPP' title='Macbook Pro M1 Pro' :stock='inStock' price='1999.99'/>
-        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='1099.99'/>
-        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='1099.99'/>
-        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='1099.99'/>
-        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='1099.99'/>
-        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='1099.99'/>
-        <item class='m-2' :imgSrc='Oculus' title='Oculus Quest 2' :stock='inStock' price='299.99'/>
-        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='stockage' price='1099.99'/>
-        <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='1099.99'/>
         <item class='m-2' :imgSrc='MBP' title='Macbook Pro' :stock='inStock' price='1099.99'/>
         <item class='m-2' :imgSrc='Oculus' title='Oculus Quest 2' :stock='inStock' price='299.99'/>
       </div>
@@ -83,6 +77,10 @@ import { supabase } from '../helpers/supabaseClient'
 import searchIcon from '../assets/images/searchIcon.svg'
 import closeButton from '../assets/images/closeButton.svg'
 import MBPP from '../assets/images/MBPP.svg'
+import arrowRight from '../assets/images/arrowRight.svg'
+import arrowLeft from '../assets/images/arrowLeft.svg'
+import mxMaster from '../assets/images/mxMaster.svg'
+import xbox from '../assets/images/xbox.svg'
 export default {
   name: 'store',
 
@@ -103,10 +101,15 @@ export default {
       data: '',
       searched: false,
       blurBg: false,
+      scrollNum: 0,
       images: {
         searchIcon,
         closeButton,
         MBPP,
+        arrowRight,
+        arrowLeft,
+        mxMaster,
+        xbox,
       },
       searchProduct: '',
       searchProduct2: '',
@@ -134,6 +137,32 @@ export default {
       } else {
         this.active = false
       }
+    },
+
+    goLeft() {
+      if (this.scrollNum === 0) {
+        return
+      }
+      this.scrollNum -= 144
+      this.$refs.productSlider.scroll({
+        top: 0,
+        left: this.scrollNum,
+        behavior: 'smooth'
+      })
+      console.log('SCROLLED')
+    },
+
+    goRight() {
+      if (this.scrollNum >= this.$refs.productSlider.offsetWidth - 288) {
+        return
+      }
+      this.scrollNum += 144
+      this.$refs.productSlider.scroll({
+        top: 0,
+        left: this.scrollNum,
+        behavior: 'smooth'
+      })
+      console.log('SCROLLED')
     },
 
     search(model) {

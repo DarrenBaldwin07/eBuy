@@ -50,6 +50,7 @@ export default {
             this.orderCount = this.orderCount['data'][this.orderCount['data'].length - 1]['order_count']
         } catch (error) {
             console.log('Error: ', error)
+            this.orderCount = 0
         } finally {
             this.loading = false
             console.log(this.userData)

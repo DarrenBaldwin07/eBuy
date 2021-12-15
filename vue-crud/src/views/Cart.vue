@@ -10,8 +10,8 @@
         <div class='flex flex-row justify-between items-center'>
           <router-link class='back bg-primary3 text-white mb-4 px-2 py-2 rounded-md' to='/store'>Back</router-link>
           <div class='flex flex-row items-center'>
-            <p class='mr-4 ssm:m-2 text-xs'>Darren</p>
-            <button><img class='w-12' :src="profile" alt="profile"></button>
+            <p class='mr-4 ssm:m-2 text-xs text-primary2 font-semibold'>{{ email }}</p>
+            <router-link to='/profile'><img class='w-12' :src="profile" alt="profile"></router-link>
           </div>
         </div>
           <div class='bg-primary1 p-6 w-44 h-44 flex items-center justify-center rounded-full mt-6 smd:w-28 smd:h-28'><img class='smd:w-12 xs:w-10' :src="cart" alt="Shopping Cart"></div>
@@ -125,6 +125,7 @@ export default {
       cart: cart,
       data: '',
       orderCount: '',
+      email: '',
       userID: '',
       loading: false,
       profile: profile,
@@ -152,6 +153,7 @@ export default {
       this.loading = true
       window.removeEventListener('scroll', this.disScroll)
       this.userID = await supabase.auth.user().id
+      this.email = await supabase.auth.user().email
       this.data = await supabase.from('cart')
 
       if (this.data['data'].length === 0) {
