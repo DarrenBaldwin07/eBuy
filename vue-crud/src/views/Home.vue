@@ -1,39 +1,91 @@
 <template>
-  <div class='text-center mt-12' id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to='/login'>Login</router-link> |
-    <router-link to='/store'>Store</router-link> |
-    <router-link to='/cart'>Cart</router-link> |
-    <router-link to='/profile'>Profile</router-link>
+  <div class='container overflow-hidden'>
+    <div class='nav flex flex-row justify-between items-center mt-4'>
+      <img class='w-34 ssm:w-32 xs:w-24' :src="images.logo" alt="logo">
+      <router-link class='transition duration-500 border-2 border-primary3 text-primary3 font-bold px-8 py-2 rounded-md bg-left-bottom hover:bg-gradient-to-r from-primary3 to-primary3 hover:text-white hover:bg-right-bottom bg-cover' to='/login'>Sign Up</router-link>
+    </div>
+    <div class='hero-text flex flex-col justify-center items-center text-center mt-12 ssm:'>
+      <p class='text-white text-6xl font-bold w-800 slg:text-4xl smd:w-500 xs:w-96 xxs:w-80 xxxs:w-72 xxxs:text-2xl'>Better electronics at lower prices!</p>
+      <div class='mt-8'>
+        <router-link class='bg-primary3 py-2 px-8 rounded-md font-bold text-white 2xl:hidden' to='/login'>Get Started</router-link>
+      </div>
+    </div>
+    <div class='mt-10 flex flex-row items-center justify-center'>
+      <div class='z-10 ml-3 w-72 hidden lg:block'>
+        <div class='storeItem flex flex-col items-center justify-center bg-white p-4 shadow-lg rounded-xl w-full'>
+            <div>
+                <div>
+                    <img class='w-40 h-40 m-auto rounded-2xl' :src="images.mx" alt="logitech mouse">
+                    <h1 class='text-xl'>Logitech Mx master 3</h1>
+                    <p class='font-bold'>$79.99</p>
+                </div>
+                <div class='flex flex-row items-center justify-between mt-2'>
+                    <button class='bg-primary3 text-white pr-3 pl-3 pb-2 pt-2 rounded-md cursor-default'>Add to Cart</button>
+                    <p class='m-2 bg-opacity-10 p-1 rounded-md' :class="{'text-green-500 bg-green-600': true, 'text-red-500 bg-red-600': false}">In Stock</p>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class='z-10 ml-3 mb-8 w-72 hidden md:block'>
+        <div class='storeItem flex flex-col items-center justify-center bg-white p-4 shadow-lg rounded-xl w-full'>
+            <div>
+                <div>
+                    <img class='w-40 h-40 m-auto rounded-2xl' :src="images.Oculus" alt="Oculus Quest">
+                    <h1 class='text-xl'>Oculus Quest 2</h1>
+                    <p class='font-bold'>$199.99</p>
+                </div>
+                <div class='flex flex-row items-center justify-between mt-2'>
+                    <button class='bg-primary3 text-white pr-3 pl-3 pb-2 pt-2 rounded-md cursor-default'>Add to Cart</button>
+                    <p class='m-2 bg-opacity-10 p-1 rounded-md' :class="{'text-green-500 bg-green-600': true, 'text-red-500 bg-red-600': false}">In Stock</p>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class='z-10 ml-3 mb-16 w-72 hidden sx:block ssm:block'>
+        <div class='storeItem flex flex-col items-center justify-center bg-white p-4 shadow-lg rounded-xl w-full'>
+            <div>
+                <div>
+                    <img class='w-40 h-40 m-auto rounded-2xl' :src="images.MBP" alt="Macbook Pro">
+                    <h1 class='text-xl'>Macbook Pro</h1>
+                    <p class='font-bold'>$799.99</p>
+                </div>
+                <div class='flex flex-row items-center justify-between mt-2'>
+                    <button class='bg-primary3 text-white pr-3 pl-3 pb-2 pt-2 rounded-md cursor-default'>Add to Cart</button>
+                    <p class='m-2 bg-opacity-10 p-1 rounded-md' :class="{'text-green-500 bg-green-600': true, 'text-red-500 bg-red-600': false}">In Stock</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <h1>{{ userInfo }}</h1>
-  <h1>{{ user }}</h1>
-  <button @click="getData()">Click</button>
+  <img class='absolute bottom-0 w-screen z-0' :src="images.wave" alt="wave">
 </template>
 
 <script>
-import { supabase } from '../helpers/supabaseClient'
+import wave from '../assets/images/wave.svg'
+import logo from '../assets/images/Logo.png'
+import MBP from '../assets/images/MBP.svg'
+import Oculus from '../assets/images/Oculus.jpg'
+import mx from  '../assets/images/mxMaster.svg'
 export default {
   name: "Home",
 
+
   data() {
     return {
-      user: '',
-      userInfo: supabase.auth.user(),
-      userID: '',
+      images: {
+        wave,
+        logo,
+        MBP,
+        Oculus,
+        mx,
+      }
     }
   },
 
-  methods: {
-    async getData() {
-      // set data
-      this.userID = supabase.auth.user().id
-      await supabase.from('cart').insert([{user_id: String(this.userID), item: 'Laptop mac', price: '1999'}])
-      // get data from table with select
-      const { data } = await supabase.from('cart')
-      
-      this.user = data
-    }
-  }
-};
+}
+
 </script>
+

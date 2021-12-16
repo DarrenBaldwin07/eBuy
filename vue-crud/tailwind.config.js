@@ -17,6 +17,7 @@ module.exports = {
       'lg': {'min': '1023px'},
       'md': {'min': '767px'},
       'sm': {'min': '639px'},
+      'sx': {'min': '500px'},
       's2xl': {'max': '1535px'},
       'sxl': {'max': '1279px'},
       'slg': {'max': '1023px'},
@@ -24,10 +25,16 @@ module.exports = {
       'ssm': {'max': '639px'},
       'xs': {'max': '550px'},
       'xxs': {'max': '480px'},
+      'xxxs': {'max': '300px'},
     },
     
     // custom colors - put in extend to extend current props instead of overriding everything
     extend: {
+      
+      margin: {
+        '192': '768px'
+      },
+
       width: {
         '800': '800px',
         '500': '500px',
