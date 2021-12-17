@@ -2,7 +2,7 @@
   <div class='container overflow-hidden'>
     <div class='nav flex flex-row justify-between items-center mt-4'>
       <img class='w-34 ssm:w-32 xs:w-24' :src="images.logo" alt="logo">
-      <router-link class='transition duration-500 border-2 border-primary3 text-primary3 font-bold px-8 py-2 rounded-md bg-left-bottom hover:bg-gradient-to-r from-primary3 to-primary3 hover:text-white hover:bg-right-bottom bg-cover' to='/login'>Sign Up</router-link>
+      <router-link class='transition duration-500 border-2 border-primary3 text-primary3 font-bold px-8 py-2 rounded-md  hover:text-white hover:bg-primary3' to='/login'>Sign Up</router-link>
     </div>
     <div class='hero-text flex flex-col justify-center items-center text-center mt-12 ssm:'>
       <p class='text-white text-6xl font-bold w-800 slg:text-4xl smd:w-500 xs:w-96 xxs:w-80 xxxs:w-72 xxxs:text-2xl'>Better electronics at lower prices!</p>
