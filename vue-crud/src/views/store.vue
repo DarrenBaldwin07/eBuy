@@ -143,6 +143,7 @@ export default {
       if (this.scrollNum === 0) {
         return
       }
+
       this.scrollNum -= 144
       this.$refs.productSlider.scroll({
         top: 0,
@@ -153,7 +154,7 @@ export default {
     },
 
     goRight() {
-      if (this.scrollNum >= this.$refs.productSlider.offsetWidth - 288) {
+      if (this.scrollNum >= this.$refs.productSlider.offsetWidth) {
         return
       }
       this.scrollNum += 144
