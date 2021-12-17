@@ -66,7 +66,7 @@ export default {
       if (this.validate()) {
         try {
           this.loading = true
-          const { error } = await supabase.auth.signIn({ email: this.email }, {redirectTo: 'https://vue-crud-devd0.vercel.app/store'})
+          const { error } = await supabase.auth.signIn({ email: this.email }, {redirectTo: 'https://vue-crud-neon.vercel.app/store'})
           if (error) throw error
           alert('We have sent a confirmation link to your email!')
         } catch (error) {
