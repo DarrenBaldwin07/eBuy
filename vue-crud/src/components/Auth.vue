@@ -66,9 +66,9 @@ export default {
       if (this.validate()) {
         try {
           this.loading = true
-          const { error } = await supabase.auth.signIn({ email: this.email })
+          const { error } = await supabase.auth.signIn({ email: this.email }, {redirectTo: 'http://localhost:8080/store'})
           if (error) throw error
-          alert('Check your email for the login link')
+          alert('We have sent a confirmation link to your email!')
         } catch (error) {
           alert(error.error_description || error.message)
         } finally {
