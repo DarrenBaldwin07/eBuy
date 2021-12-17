@@ -20,7 +20,9 @@ module.exports = {
       'sx': {'min': '500px'},
       's2xl': {'max': '1535px'},
       'sxl': {'max': '1279px'},
+      'sl': {'max': '1120px'},
       'slg': {'max': '1023px'},
+      'sdd': {'max': '850px'},
       'smd': {'max': '767px'},
       'ssm': {'max': '639px'},
       'xs': {'max': '550px'},
@@ -37,7 +39,9 @@ module.exports = {
 
       width: {
         '800': '800px',
+        '650': '650px',
         '500': '500px',
+        '400': '400px',
         '300': '300px',
       },
 

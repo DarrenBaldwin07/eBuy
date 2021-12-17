@@ -4,11 +4,12 @@
       <img class='w-34 ssm:w-32 xs:w-24' :src="images.logo" alt="logo">
       <router-link class='transition duration-500 border-2 border-primary3 text-primary3 font-bold px-8 py-2 rounded-md  hover:text-white hover:bg-primary3' to='/login'>Sign Up</router-link>
     </div>
-    <div class='hero-text flex flex-col justify-center items-center text-center mt-12 ssm:'>
-      <p class='text-white text-6xl font-bold w-800 slg:text-4xl smd:w-500 xs:w-96 xxs:w-80 xxxs:w-72 xxxs:text-2xl'>Better electronics at lower prices!</p>
-      <div class='mt-8'>
-        <router-link class='bg-primary3 py-2 px-8 rounded-md font-bold text-white 2xl:hidden' to='/login'>Get Started</router-link>
+    <div class='hero-text flex flex-row items-center justify-between mt-12 sdd:flex-col sdd:items-start z-10'>
+      <div>
+        <p class='text-white text-6xl font-bold w-650 slg:text-5xl sxl:w-400 mb-12 leading-snug sdd:w-650 ssm:text-4xl smd:w-500 ssm:w-300'>Get the most popular electronics at lower prices!</p>
+        <router-link class='bg-primary3 py-2 px-8 rounded-md font-bold text-white z-20' to='/login'>Get Started</router-link>
       </div>
+      <img class='w-500 z-10 mt-24 sl:w-96' :src="images.hero" alt="Empty Cart">
     </div>
     <div class='mt-10 flex flex-row items-center justify-center'>
       <div class='z-10 ml-3 w-72 hidden lg:block'>
@@ -58,9 +59,10 @@
             </div>
         </div>
       </div>
+      <img class='fixed w-screen z-auto bottom-0' :src="images.wave" alt="wave">
     </div>
   </div>
-  <img class='absolute bottom-0 w-screen z-0' :src="images.wave" alt="wave">
+  
 </template>
 
 <script>
@@ -69,6 +71,7 @@ import logo from '../assets/images/Logo.png'
 import MBP from '../assets/images/MBP.svg'
 import Oculus from '../assets/images/Oculus.jpg'
 import mx from  '../assets/images/mxMaster.svg'
+import hero from '../assets/images/heroImg.svg'
 export default {
   name: "Home",
 
@@ -81,6 +84,7 @@ export default {
         MBP,
         Oculus,
         mx,
+        hero,
       }
     }
   },
