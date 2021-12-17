@@ -1,2 +1,3 @@
 # npm package stuff
 /vue-crud/node_modules/
+.vercel
