@@ -12,11 +12,11 @@
         <hr>
       </div>
       <div ref='productSlider' v-if='!isSearchFound' class='items flex flex-row slg:flex-col items-center slg:h-96 overflow-x-auto'>
-        <div @click='goLeft()' class='bg-primary2 opacity-70 w-12 h-12 flex items-center justify-center z-10 absolute rounded-full cursor-pointer inset-y-auto left-6 slg:hidden'><img class='w-4' :src="images.arrowLeft" alt="Left Arrow"></div>
+        <div @click='goLeft()' class='transition duration-300 bg-primary2 opacity-70 w-12 h-12 flex items-center justify-center z-10 absolute rounded-full cursor-pointer inset-y-auto left-6 slg:hidden hover:p-2'><img class='w-4' :src="images.arrowLeft" alt="Left Arrow"></div>
         <div v-for="i in searchResults"  :key='i'>
           <item class='m-4 slg:m-0 slg:mt-2 slg:mb-4 smd:w-56' :title="i['title']" :price="i['price']" :stock="i['stock']" :imgSrc="i['img']"/>
         </div>
-        <div @click='goRight()' class='bg-primary2 opacity-70 w-12 h-12 flex items-center justify-center z-10 absolute rounded-full cursor-pointer inset-y-auto right-6 slg:hidden'><img class='w-4'  :src="images.arrowRight" alt="Right Arrow"></div>
+        <div @click='goRight()' class='transition duration-300 bg-primary2 opacity-70 w-12 h-12 flex items-center justify-center z-10 absolute rounded-full cursor-pointer inset-y-auto right-6 slg:hidden hover:p-2'><img class='w-4'  :src="images.arrowRight" alt="Right Arrow"></div>
       </div>
       <template v-if='isSearchFound'>
         <div class='flex flex-col items-center justify-center mx-auto w-56 mt-12 smd:mt-4'>
