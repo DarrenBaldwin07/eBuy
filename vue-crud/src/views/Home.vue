@@ -9,7 +9,7 @@
         <p class='text-white text-6xl font-bold w-650 slg:text-5xl sxl:w-400 mb-12 leading-snug sdd:w-650 ssm:text-4xl smd:w-500 ssm:w-300'>Get the most popular electronics at lower prices!</p>
         <router-link class='bg-primary3 py-2 px-8 rounded-md font-bold text-white z-20' to='/login'>Get Started</router-link>
       </div>
-      <img class='w-500 z-10 mt-24 sl:w-96' :src="images.hero" alt="Empty Cart">
+      <img class='w-500 mt-24 sl:w-96 z-20 relative' :src="images.hero" alt="Empty Cart">
     </div>
     <div class='flex flex-col items-center z-20 relative mt-12'>
       <h1 class='text-center text-3xl font-bold text-white'>Check out some of our top deals bellow!</h1>

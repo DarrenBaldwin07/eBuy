@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <div class='flex flex-col items-center m-auto slg:mt-24'>
+    <div class='flex flex-col items-center m-auto slg:mt-24 ssm:mb-4'>
       <img :src="logo" alt="logo">
       <auth class='md:mt-0'/>
     </div>

@@ -8,9 +8,9 @@
     <div class='flex flex-col m-4 justify-center'>
       <div>
         <div class='flex flex-row justify-between items-center'>
-          <router-link class='back bg-primary3 text-white mb-4 px-2 py-2 rounded-md' to='/store'>Back</router-link>
+          <router-link class='back bg-primary3 text-white mb-4 px-2 py-2 rounded-md slg:px-1 slg:py-1' to='/store'>Back</router-link>
           <div class='flex flex-row items-center'>
-            <p class='mr-4 ssm:m-2 text-xs text-primary2 font-semibold'>{{ email }}</p>
+            <p class='mr-4 ssm:m-2 text-xs text-primary2 font-semibold xs:hidden'>{{ email }}</p>
             <router-link to='/profile'><img class='w-12' :src="profile" alt="profile"></router-link>
           </div>
         </div>
@@ -21,34 +21,34 @@
         <div class='address rounded-xl p-8 shadow-xl h-full'>
           <form class='' @keyup="isFormFilled()" @submit.prevent='makeOrder()'>
             <div class='slg:flex flex-col items-center'>
-              <div class='flex flex-row xs:flex-col'> 
+              <div class='flex flex-row xs:flex-col xs:items-center'> 
                 <div class='flex flex-col m-4'>
-                  <label class='text-primary2' for="name">First Name *</label>
-                  <input v-model='firstName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="name" id="name">
+                  <label class='text-primary2 ml-' for="name">First Name *</label>
+                  <input v-model='firstName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-52' type="text" name="name" id="name">
                 </div>
                 <div class='flex flex-col m-4'>
                   <label class='text-primary2' for="name">Last Name *</label>
-                  <input v-model='lastName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="last-name" id="name">
+                  <input v-model='lastName' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-52' type="text" name="last-name" id="name">
                 </div>
               </div>
               <div class='flex flex-row xs:flex-col'>
                 <div class='flex flex-col m-4'>
                   <label class='text-primary2' for="name">Address *</label>
-                  <input v-model='address' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="Address" id="address">
+                  <input v-model='address' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-52' type="text" name="Address" id="address">
                 </div>
                 <div class='flex flex-col m-4'>
                   <label class='text-primary2' for="name">APT# *</label>
-                  <input v-model='apt' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="APT" id="APT">
+                  <input v-model='apt' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-52' type="text" name="APT" id="APT">
                 </div>
               </div>
               <div class='flex flex-row xs:flex-col'>
                 <div class='flex flex-col m-4'>
                   <label class='text-primary2' for="name">City *</label>
-                  <input v-model='city' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-60' type="text" name="City" id="City">
+                  <input v-model='city' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-52' type="text" name="City" id="City">
                 </div>
                 <div class='flex flex-col m-4'>
                   <label class='text-primary2' for="Country">Country *</label>
-                  <select class='shadow-lg p-2 w-48 rounded-md xs:w-60' name="Country" id="country">
+                  <select class='shadow-lg p-2 w-48 rounded-md xs:w-52' name="Country" id="country">
                     <option value="Country" disabled='disabled'>Country</option>
                     <option value="United States">United States</option>
                     <option value="United States">Russia</option>
@@ -58,10 +58,10 @@
               </div>
               <div class='flex flex-col m-4'>
                   <label class='text-primary2' for="Country">Postal Code * </label>
-                  <input v-model='postalCode' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 smd:w-60' type="text" name="last-name" id="name">
+                  <input v-model='postalCode' class='border-2 border-primary3 focus:outline-none rounded-md w-48 pl-2 xs:w-52' type="text" name="last-name" id="name">
               </div>
               <div class='m-4'>
-                <button class='bg-primary2 bg-opacity-40 p-2.5 text-red text-white rounded-md smd:w-60' :class="{'bg-opacity-100': isFilled}">Order Items</button>
+                <button class='bg-primary2 bg-opacity-40 p-2.5 text-red text-white rounded-md smd:w-52' :class="{'bg-opacity-100': isFilled}">Order Items</button>
               </div>
             </div>
           </form>
